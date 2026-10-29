@@ -29,7 +29,7 @@ analyzeBtn.addEventListener('click',async()=>{
  const form=new FormData();form.append('video',selectedFile);form.append('model',document.getElementById('modelSelect').value);form.append('confidence',document.getElementById('confidence').value);form.append('classes',JSON.stringify(classes));
  analyzeBtn.disabled=true;resultStatus.textContent='Processing…';resultMessage.textContent='Uploading video and processing frames with YOLO. This may take a while for long videos.';
  try{
-  const response=await fetch('http://127.0.0.1:5000/api/detect',{method:'POST',body:form});
+  const response=await fetch('/api/detect',{method:'POST',body:form});
   const data=await response.json();
   if(!response.ok)throw new Error(data.error||'Backend request failed');
   resultMessage.textContent=data.message||'Detection complete.';
