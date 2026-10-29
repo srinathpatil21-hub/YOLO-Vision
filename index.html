@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YOLO Vision | Object Detection</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#"><span class="brand-icon">Y</span><span>YOLO <b>VISION</b></span></a>
+      <span class="status"><span class="status-dot"></span> Video analysis workspace</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">AI VIDEO ANALYTICS</p>
+        <h1>See what's happening<br><span>inside your video.</span></h1>
+        <p class="subtitle">Upload a video, preview it, and connect to the YOLO detection backend to identify objects frame by frame.</p>
+      </section>
+
+      <section class="workspace">
+        <div class="panel upload-panel">
+          <div class="panel-heading"><div><p class="eyebrow">STEP 01</p><h2>Choose a video</h2></div><span class="heading-icon">↥</span></div>
+          <label class="drop-zone" id="dropZone" for="videoInput">
+            <span class="upload-symbol">↑</span>
+            <strong>Drop your video here</strong>
+            <span>or click to browse files</span>
+            <small>MP4, MOV, AVI, WEBM · Recommended under 200 MB</small>
+          </label>
+          <input id="videoInput" type="file" accept="video/*" hidden>
+          <div id="fileInfo" class="file-info hidden"></div>
+
+          <div class="settings">
+            <label for="modelSelect">YOLO model</label>
+            <select id="modelSelect">
+              <option value="yolov8n.pt">YOLOv8 Nano — fastest</option>
+              <option value="yolov8s.pt">YOLOv8 Small</option>
+              <option value="yolov8m.pt">YOLOv8 Medium</option>
+            </select>
+            <label for="confidence">Confidence threshold <span id="confidenceValue">35%</span></label>
+            <input id="confidence" type="range" min="10" max="90" value="35">
+            <label>Detect these classes</label>
+            <div class="class-chips">
+              <label><input type="checkbox" value="person" checked> Person</label>
+              <label><input type="checkbox" value="car" checked> Car</label>
+              <label><input type="checkbox" value="bicycle" checked> Bicycle</label>
+              <label><input type="checkbox" value="motorcycle" checked> Motorcycle</label>
+              <label><input type="checkbox" value="bus" checked> Bus</label>
+              <label><input type="checkbox" value="dog" checked> Dog</label>
+              <label><input type="checkbox" value="cat" checked> Cat</label>
+              <label><input type="checkbox" value="truck" checked> Truck</label>
+            </div>
+          </div>
+          <button id="analyzeBtn" class="primary-btn" disabled><span>Run object detection</span><span>↗</span></button>
+          <p class="microcopy">AI detection requires the included Python backend. Video preview works directly in this page.</p>
+        </div>
+
+        <div class="panel preview-panel">
+          <div class="panel-heading"><div><p class="eyebrow">STEP 02</p><h2>Video preview</h2></div><span class="preview-tag" id="previewTag">NO VIDEO</span></div>
+          <div class="video-stage" id="videoStage">
+            <div class="empty-state" id="emptyState"><div class="play-icon">▶</div><strong>Your video appears here</strong><span>Choose a video to start</span></div>
+            <video id="videoPreview" controls playsinline class="hidden"></video>
+          </div>
+          <div class="result-area">
+            <div class="result-title"><div><p class="eyebrow">STEP 03</p><h3>Detection result</h3></div><span class="result-status" id="resultStatus">Waiting for video</span></div>
+            <div id="resultMessage" class="result-message">Upload a video to preview it. When the backend is running, use “Run object detection” to create an annotated result.</div>
+            <a id="downloadLink" class="download-btn hidden" href="#" download>Download processed video ↓</a>
+          </div>
+        </div>
+      </section>
+      <footer>YOLO VISION <span>·</span> Video object detection interface</footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
